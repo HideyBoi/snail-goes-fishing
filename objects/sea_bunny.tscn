@@ -1,0 +1,84 @@
+[gd_scene load_steps=12 format=3 uid="uid://d1tirt3fywybt"]
+
+[ext_resource type="Script" path="res://objects/sea_bunny.gd" id="1_1pmhf"]
+[ext_resource type="Texture2D" uid="uid://7vh7chivl033" path="res://art/sea bunny.png" id="1_my8hh"]
+[ext_resource type="Texture2D" uid="uid://5osnceu1o1yw" path="res://art/bubble.png" id="2_gelid"]
+[ext_resource type="PackedScene" uid="uid://dalcp8kw76dhn" path="res://objects/sea_bunny_boom.tscn" id="2_tbyih"]
+[ext_resource type="AudioStream" uid="uid://5cplchvt0skm" path="res://audio/bubble stream.mp3" id="3_88fap"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2et5w"]
+radius = 3.0
+
+[sub_resource type="Curve" id="Curve_6s2ke"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dkbsn"]
+curve = SubResource("Curve_6s2ke")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_toyoh"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 4.0
+alpha_curve = SubResource("CurveTexture_dkbsn")
+turbulence_enabled = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06q1g"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b833e"]
+radius = 3.0
+height = 16.0
+
+[node name="SeaBunny" type="CharacterBody2D"]
+physics_interpolation_mode = 1
+z_index = -10
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_1pmhf")
+turn_speed = 1.55
+flight_speed = 6450.0
+boom = ExtResource("2_tbyih")
+
+[node name="BubbleStream" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_88fap")
+volume_db = -10.306
+autoplay = true
+parameters/looping = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.57079
+texture = ExtResource("1_my8hh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2et5w")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+physics_interpolation_mode = 2
+z_index = -1
+process_material = SubResource("ParticleProcessMaterial_toyoh")
+texture = ExtResource("2_gelid")
+fixed_fps = 120
+
+[node name="Damage" type="Area2D" parent="." groups=["Damage"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Damage"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_06q1g")
+
+[node name="PlayerDamage" type="Area2D" parent="." groups=["PlayerDamage", "SeaBunny"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDamage"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_06q1g")
+disabled = true
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b833e")
+
+[connection signal="area_entered" from="Damage" to="." method="_on_damage_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

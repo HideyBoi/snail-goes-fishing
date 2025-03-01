@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://dalcp8kw76dhn"]
+
+[ext_resource type="Texture2D" uid="uid://csc63ygkqe4gr" path="res://art/smallbubble.png" id="1_3oc0m"]
+[ext_resource type="AudioStream" uid="uid://dnlf0bd5jp7fk" path="res://audio/explosion.mp3" id="2_qhavg"]
+
+[sub_resource type="Curve" id="Curve_bdmwv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_i2bi2"]
+curve = SubResource("Curve_bdmwv")
+
+[sub_resource type="Curve" id="Curve_7yu0o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3ebtt"]
+curve = SubResource("Curve_7yu0o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fihnl"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.75
+initial_velocity_max = 37.63
+gravity = Vector3(0, 0, 0)
+scale_min = 0.85
+scale_max = 1.3
+scale_curve = SubResource("CurveTexture_3ebtt")
+alpha_curve = SubResource("CurveTexture_i2bi2")
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+emitting = false
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_fihnl")
+texture = ExtResource("1_3oc0m")
+one_shot = true
+explosiveness = 1.0
+
+[node name="Explosion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_qhavg")
+autoplay = true

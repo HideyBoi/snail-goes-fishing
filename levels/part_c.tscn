@@ -1,0 +1,697 @@
+[gd_scene load_steps=42 format=4 uid="uid://jndxai2q2shd"]
+
+[ext_resource type="PackedScene" uid="uid://bgyu73goumsq2" path="res://objects/player/player.tscn" id="1_ndisr"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="2_cwl5j"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="3_cgt3y"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="4_hi836"]
+[ext_resource type="Texture2D" uid="uid://runucwoke21f" path="res://art/barrel.png" id="5_tthm0"]
+[ext_resource type="Texture2D" uid="uid://b36v5trm2mqgo" path="res://art/fishing rod.png" id="7_ish4e"]
+[ext_resource type="FontFile" uid="uid://dsiwgijtnw3ns" path="res://art/Kenney Pixel.ttf" id="8_fhx6p"]
+[ext_resource type="Texture2D" uid="uid://fetmrfnt21yq" path="res://art/keyboard_k.png" id="9_5omaw"]
+[ext_resource type="Texture2D" uid="uid://cxnbwrvkvt7it" path="res://art/player rod.png" id="10_i7up0"]
+[ext_resource type="Texture2D" uid="uid://ca5qxafjmqsfa" path="res://art/playerhand.png" id="11_lxf24"]
+[ext_resource type="PackedScene" uid="uid://dsbjmr8t4wgq6" path="res://objects/fishing_game.tscn" id="12_asyaq"]
+[ext_resource type="Script" path="res://objects/crab_event.gd" id="13_hemp7"]
+[ext_resource type="Texture2D" uid="uid://cgy2xgiavfn06" path="res://art/crab arm.png" id="14_1t7wm"]
+[ext_resource type="Texture2D" uid="uid://xg1ygpvygksp" path="res://icon.svg" id="15_b8jrs"]
+[ext_resource type="Texture2D" uid="uid://cr4f2fjegsa18" path="res://art/shore tiles.png" id="16_v0no0"]
+[ext_resource type="Texture2D" uid="uid://gaoedjweim45" path="res://art/sky.png" id="17_02yra"]
+[ext_resource type="Texture2D" uid="uid://cmydtlwwac266" path="res://art/background but good maybe.png" id="18_ce6mq"]
+[ext_resource type="Texture2D" uid="uid://rlvexwews4qv" path="res://art/clouds.png" id="19_8yius"]
+[ext_resource type="PackedScene" uid="uid://cqh2ao6g0ttdt" path="res://objects/water_tile.tscn" id="20_l77du"]
+[ext_resource type="Texture2D" uid="uid://dnfir00crpxfp" path="res://art/keyboard_w.png" id="21_jwbm6"]
+[ext_resource type="Texture2D" uid="uid://vifnijxgudib" path="res://art/keyboard_s.png" id="22_eq8c4"]
+[ext_resource type="Texture2D" uid="uid://dv5dx24047wd8" path="res://art/keyboard_a.png" id="23_bv6cg"]
+[ext_resource type="Texture2D" uid="uid://ctlwarmy6mxhp" path="res://art/keyboard_j.png" id="24_oh2pf"]
+[ext_resource type="Texture2D" uid="uid://ddfdtot6hkee" path="res://art/keyboard_d.png" id="25_wmiih"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_poieb"]
+font = ExtResource("8_fhx6p")
+font_size = 8
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_xfk58"]
+script = ExtResource("4_hi836")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_moxtw"]
+radius = 42.0476
+
+[sub_resource type="Curve" id="Curve_x1lii"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_uxv82"]
+script = ExtResource("4_hi836")
+duration = 5.0
+transition = 5
+ease = 2
+
+[sub_resource type="Animation" id="Animation_x3h7t"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrabArm:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-140, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CrabArm:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(150, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CrabArm/Player:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Barrel/PlayerPos:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ahs68"]
+resource_name = "snatch"
+length = 6.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CrabArm:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2, 2, 2, 2),
+"points": PackedFloat32Array(-140, -0.25, 0, 0.25, 0, -137.769, -0.247565, -1.90342, 0.433333, 3.33171, -141.555, -0.4, -1.36298, 0.224285, 0.764238, -136.759, -0.133333, -0.0181427, 0.111093, 0.0151164, -141.202, -0.0897005, 0.489044, 0.166667, -0.908661, -140, -0.166667, 0.918488, 0, 0),
+"times": PackedFloat32Array(0, 0.766667, 1.66667, 2.2, 2.5, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CrabArm:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0, 2),
+"points": PackedFloat32Array(161.73, -0.25, 0, 0.933333, -16.1859, 110, -0.32222, -0.102931, 2.13333, 0.68148, 51.4704, -0.0333338, 20.9452, 0.25, 0, 142.224, -0.4, -85.7731, 0, 0),
+"times": PackedFloat32Array(0, 0.966667, 3.26667, 6)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CrabArm/Player:visible")
+tracks/2/interp = 0
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Player:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(3.23333, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../Barrel/PlayerPos:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(3.23333, 3.26667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_wqtk7"]
+_data = {
+"RESET": SubResource("Animation_x3h7t"),
+"snatch": SubResource("Animation_ahs68")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dfbe1"]
+atlas = ExtResource("14_1t7wm")
+region = Rect2(17, 7, 10, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v4b05"]
+atlas = ExtResource("14_1t7wm")
+region = Rect2(12, 83, 15, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jqkov"]
+atlas = ExtResource("14_1t7wm")
+region = Rect2(2, 170, 25, 82)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js5sf"]
+size = Vector2(128, 128)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klfd7"]
+texture = ExtResource("16_v0no0")
+0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+2:1/size_in_atlas = Vector2i(2, 1)
+2:1/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5, -7, 8, -7, 8, 8, -8, 8, -8, -4, -7, -6)
+1:3/0 = 0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -7, 8, 8, -8, 8, -8, -7)
+2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -7, 8, 8, -8, 8, -8, -7)
+3:3/0 = 0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -7, 8, 8, -8, 8, -8, -7)
+0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:4/0 = 0
+3:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:5/0 = 0
+1:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:5/0 = 0
+2:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:5/0 = 0
+3:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:6/0 = 0
+0:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:6/0 = 0
+1:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:6/0 = 0
+2:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:6/0 = 0
+3:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0luux"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_klfd7")
+
+[sub_resource type="LabelSettings" id="LabelSettings_dsnfl"]
+font = ExtResource("8_fhx6p")
+font_size = 42
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_epg1b"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 127, -1, 106, 0, -287.193, 40.433, -478, 0)
+}
+point_count = 2
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rmvcu"]
+size = Vector2(20, 157)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ndisr")]
+position = Vector2(-69, -128)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 137.0
+offset_top = -18.0
+offset_right = 284.0
+offset_bottom = 39.0
+text = "CONGRATS!!!!!!
+You escaped the hungry crab!
+Thank you for playing
+
+I wish i didn't start late :/
+I'll maybe update this to be better"
+label_settings = SubResource("LabelSettings_poieb")
+
+[node name="MainCam" type="Camera2D" parent="."]
+physics_interpolation_mode = 1
+position = Vector2(-68.7627, -0.623112)
+process_callback = 0
+
+[node name="PhantomCameraHost" type="Node" parent="MainCam"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("2_cwl5j")
+
+[node name="PlayerCam" type="Node2D" parent="." node_paths=PackedStringArray("follow_target", "follow_path")]
+top_level = true
+position = Vector2(-68.7627, -0.623112)
+script = ExtResource("3_cgt3y")
+priority = 2
+follow_mode = 4
+follow_target = NodePath("../Player")
+follow_path = NodePath("../env/Path2D")
+tween_resource = SubResource("Resource_xfk58")
+draw_limits = true
+
+[node name="Barrel" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(-87, 33)
+texture = ExtResource("5_tthm0")
+
+[node name="FishingRod" type="Sprite2D" parent="Barrel"]
+z_index = -2
+position = Vector2(7, -6)
+texture = ExtResource("7_ish4e")
+
+[node name="Area2D" type="Area2D" parent="Barrel"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrel/Area2D"]
+shape = SubResource("CircleShape2D_moxtw")
+
+[node name="UseButton" type="Node2D" parent="Barrel"]
+modulate = Color(1, 1, 1, 0)
+scale = Vector2(0.2, 0.2)
+
+[node name="KeyboardW6" type="Sprite2D" parent="Barrel/UseButton"]
+position = Vector2(-33, -133)
+texture = ExtResource("9_5omaw")
+
+[node name="PlayerPos" type="Marker2D" parent="Barrel"]
+position = Vector2(-64, 3)
+
+[node name="PlayerRod" type="Sprite2D" parent="Barrel/PlayerPos"]
+visible = false
+position = Vector2(-25, -2)
+rotation = -0.412105
+texture = ExtResource("10_i7up0")
+flip_h = true
+
+[node name="Playerhand" type="Sprite2D" parent="Barrel/PlayerPos/PlayerRod"]
+position = Vector2(4.24113, 12.7677)
+rotation = 0.412105
+texture = ExtResource("11_lxf24")
+
+[node name="Playerhand2" type="Sprite2D" parent="Barrel/PlayerPos/PlayerRod"]
+z_index = -1
+position = Vector2(2.17817, 7.50038)
+rotation = 0.412105
+texture = ExtResource("11_lxf24")
+
+[node name="Line2D" type="Line2D" parent="Barrel/PlayerPos/PlayerRod"]
+z_index = -1
+position = Vector2(-3.20965, -10.134)
+points = PackedVector2Array(-71.1631, 35.4656, -65.7807, 35.6357, -56.8483, 35.1749, -48.4316, 33.3973, -37.8971, 29.2713, -30.5119, 24.8601, -17.9747, 16.1528, 0.400543, -0.916279)
+width = 1.0
+width_curve = SubResource("Curve_x1lii")
+default_color = Color(0.427451, 0.458824, 0.552941, 1)
+
+[node name="FishingCam" type="Node2D" parent="Barrel"]
+position = Vector2(-141, -33)
+script = ExtResource("3_cgt3y")
+tween_resource = SubResource("Resource_uxv82")
+draw_limits = true
+
+[node name="FishingGame" parent="Barrel" instance=ExtResource("12_asyaq")]
+position = Vector2(-141, -33)
+
+[node name="Skillcheck" parent="Barrel/FishingGame/CanvasLayer" index="0"]
+position = Vector2(192, 108)
+scale = Vector2(1, 1)
+
+[node name="CrabEvent" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource("13_hemp7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CrabEvent"]
+libraries = {
+"": SubResource("AnimationLibrary_wqtk7")
+}
+
+[node name="CrabArm" type="Node2D" parent="CrabEvent"]
+position = Vector2(-140, 150)
+
+[node name="Claw" type="Sprite2D" parent="CrabEvent/CrabArm"]
+position = Vector2(-7.5, -8)
+texture = SubResource("AtlasTexture_dfbe1")
+
+[node name="Player" type="Sprite2D" parent="CrabEvent/CrabArm"]
+visible = false
+position = Vector2(-10, -14.6214)
+texture = SubResource("AtlasTexture_v4b05")
+
+[node name="MainArm" type="Sprite2D" parent="CrabEvent/CrabArm"]
+position = Vector2(-14.5, 20)
+texture = SubResource("AtlasTexture_jqkov")
+
+[node name="env" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="old" type="Node2D" parent="env"]
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="env/old"]
+position = Vector2(-286, -1680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D9" type="StaticBody2D" parent="env/old"]
+position = Vector2(-179, -1680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D9"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D9"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="env/old"]
+position = Vector2(-393, -1680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D2"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="env/old"]
+position = Vector2(-561, -1680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D3"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D3"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="env/old"]
+position = Vector2(-561, -1583)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D4"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D4"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="env/old"]
+position = Vector2(-393, -1583)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D5"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D5"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="env/old"]
+position = Vector2(-393, -1472)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D6"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D6"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="env/old"]
+position = Vector2(-457, -1391)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D7"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D7"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D8" type="StaticBody2D" parent="env/old"]
+position = Vector2(-561, -1391)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/old/StaticBody2D8"]
+shape = SubResource("RectangleShape2D_js5sf")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/old/StaticBody2D8"]
+texture = ExtResource("15_b8jrs")
+metadata/_edit_lock_ = true
+
+[node name="Props" type="TileMapLayer" parent="env"]
+position = Vector2(0, 1)
+tile_map_data = PackedByteArray("AAD5/wIAAAABAAAAAAAIAAIAAAAAAAAAAAD3/wIAAAACAAAAAAD7/wIAAAADAAAAAAD+/wIAAAACAAEAAAACAAIAAAACAAAAAAAFAAIAAAACAAAAAAADAAIAAAABAAAAAAALAAIAAAACAAEAABD4/wIAAAAAAAEAAAA=")
+tile_set = SubResource("TileSet_0luux")
+
+[node name="Ground" type="TileMapLayer" parent="env"]
+tile_map_data = PackedByteArray("AAD1/wMAAAAAAAMAAAD1/wQAAAAAAAQAAAD1/wUAAAAAAAUAAAD1/wYAAAAAAAYAAAD2/wMAAAABAAMAAAD2/wQAAAABAAQAAAD2/wUAAAABAAUAAAD2/wYAAAABAAYAAAD3/wMAAAACAAMAAAD3/wQAAAACAAQAAAD3/wUAAAACAAUAAAD3/wYAAAACAAYAAAD4/wMAAAADAAMAAAD4/wQAAAADAAQAAAD4/wUAAAADAAUAAAD4/wYAAAADAAYAAAD5/wMAAAABAAMAAAD5/wQAAAABAAQAAAD5/wUAAAABAAUAAAD5/wYAAAABAAYAAAD6/wMAAAACAAMAAAD6/wQAAAACAAQAAAD6/wUAAAACAAUAAAD6/wYAAAACAAYAAAD7/wMAAAADAAMAAAD7/wQAAAADAAQAAAD7/wUAAAADAAUAAAD7/wYAAAADAAYAAAD8/wMAAAABAAMAAAD8/wQAAAABAAQAAAD8/wUAAAABAAUAAAD8/wYAAAABAAYAAAD9/wMAAAACAAMAAAD9/wQAAAACAAQAAAD9/wUAAAACAAUAAAD9/wYAAAACAAYAAAD+/wMAAAADAAMAAAD+/wQAAAADAAQAAAD+/wUAAAADAAUAAAD+/wYAAAADAAYAAAD//wMAAAABAAMAAAD//wQAAAABAAQAAAD//wUAAAABAAUAAAD//wYAAAABAAYAAAAAAAMAAAACAAMAAAAAAAQAAAACAAQAAAAAAAUAAAACAAUAAAAAAAYAAAACAAYAAAABAAMAAAADAAMAAAABAAQAAAADAAQAAAABAAUAAAADAAUAAAABAAYAAAADAAYAAAACAAMAAAABAAMAAAACAAQAAAABAAQAAAACAAUAAAABAAUAAAACAAYAAAABAAYAAAADAAMAAAACAAMAAAADAAQAAAACAAQAAAADAAUAAAACAAUAAAADAAYAAAACAAYAAAAEAAMAAAADAAMAAAAEAAQAAAADAAQAAAAEAAUAAAADAAUAAAAEAAYAAAADAAYAAAAFAAMAAAABAAMAAAAFAAQAAAABAAQAAAAFAAUAAAABAAUAAAAFAAYAAAABAAYAAAAGAAMAAAACAAMAAAAGAAQAAAACAAQAAAAGAAUAAAACAAUAAAAGAAYAAAACAAYAAAAHAAMAAAADAAMAAAAHAAQAAAADAAQAAAAHAAUAAAADAAUAAAAHAAYAAAADAAYAAAAIAAMAAAABAAMAAAAIAAQAAAABAAQAAAAIAAUAAAABAAUAAAAIAAYAAAABAAYAAAAJAAMAAAACAAMAAAAJAAQAAAACAAQAAAAJAAUAAAACAAUAAAAJAAYAAAACAAYAAAAKAAMAAAADAAMAAAAKAAQAAAADAAQAAAAKAAUAAAADAAUAAAAKAAYAAAADAAYAAAALAAMAAAABAAMAAAALAAQAAAABAAQAAAALAAUAAAABAAUAAAALAAYAAAABAAYAAAAMAAMAAAACAAMAAAAMAAQAAAACAAQAAAAMAAUAAAACAAUAAAAMAAYAAAACAAYAAAANAAMAAAADAAMAAAANAAQAAAADAAQAAAANAAUAAAADAAUAAAANAAYAAAADAAYAAAAOAAMAAAABAAMAAAAOAAQAAAABAAQAAAAOAAUAAAABAAUAAAAOAAYAAAABAAYAAAAPAAMAAAACAAMAAAAPAAQAAAACAAQAAAAPAAUAAAACAAUAAAAPAAYAAAACAAYAAAAQAAMAAAADAAMAAAAQAAQAAAADAAQAAAAQAAUAAAADAAUAAAAQAAYAAAADAAYAAAARAAMAAAABAAMAAAARAAQAAAABAAQAAAARAAUAAAABAAUAAAARAAYAAAABAAYAAAASAAMAAAACAAMAAAASAAQAAAACAAQAAAASAAUAAAACAAUAAAASAAYAAAACAAYAAAATAAMAAAADAAMAAAATAAQAAAADAAQAAAATAAUAAAADAAUAAAATAAYAAAADAAYAAAA=")
+tile_set = SubResource("TileSet_0luux")
+
+[node name="Sky" type="Parallax2D" parent="env"]
+z_index = -5
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(420, 0)
+repeat_times = 8
+follow_viewport = false
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/Sky"]
+texture = ExtResource("17_02yra")
+metadata/_edit_lock_ = true
+
+[node name="Mountains" type="Parallax2D" parent="env"]
+z_index = -5
+scroll_scale = Vector2(0.05, 0)
+repeat_size = Vector2(420, 0)
+repeat_times = 8
+follow_viewport = false
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/Mountains"]
+texture = ExtResource("18_ce6mq")
+metadata/_edit_lock_ = true
+
+[node name="Clouds" type="Parallax2D" parent="env"]
+z_index = -5
+scroll_scale = Vector2(0.01, 0)
+repeat_size = Vector2(600, 0)
+autoscroll = Vector2(5, 0)
+repeat_times = 8
+follow_viewport = false
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="env/Clouds"]
+position = Vector2(0, -39)
+texture = ExtResource("19_8yius")
+metadata/_edit_lock_ = true
+
+[node name="Water" type="Node2D" parent="env"]
+z_index = 2
+
+[node name="WaterTile" parent="env/Water" instance=ExtResource("20_l77du")]
+
+[node name="WaterTile2" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(32, 137)
+
+[node name="WaterTile3" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(64, 137)
+
+[node name="WaterTile4" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(96, 137)
+
+[node name="WaterTile5" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(128, 137)
+
+[node name="WaterTile6" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(160, 137)
+
+[node name="WaterTile7" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(192, 137)
+
+[node name="WaterTile8" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(224, 137)
+
+[node name="WaterTile9" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(256, 137)
+
+[node name="WaterTile10" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(288, 137)
+
+[node name="WaterTile11" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(320, 137)
+
+[node name="WaterTile20" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-352, 137)
+
+[node name="WaterTile21" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-320, 137)
+
+[node name="WaterTile22" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-288, 137)
+
+[node name="WaterTile31" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-448, 137)
+
+[node name="WaterTile32" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-416, 137)
+
+[node name="WaterTile33" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-384, 137)
+
+[node name="WaterTile23" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-256, 137)
+
+[node name="WaterTile24" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-224, 137)
+
+[node name="WaterTile25" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-192, 137)
+
+[node name="WaterTile26" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-160, 137)
+
+[node name="WaterTile27" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-128, 137)
+
+[node name="WaterTile28" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-96, 137)
+
+[node name="WaterTile29" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-64, 137)
+
+[node name="WaterTile30" parent="env/Water" instance=ExtResource("20_l77du")]
+position = Vector2(-32, 137)
+
+[node name="Input" type="Node2D" parent="env"]
+visible = false
+position = Vector2(223, -15)
+scale = Vector2(0.2, 0.2)
+
+[node name="KeyboardW" type="Sprite2D" parent="env/Input"]
+modulate = Color(1, 1, 1, 0.298039)
+position = Vector2(90, -93)
+texture = ExtResource("21_jwbm6")
+
+[node name="KeyboardW2" type="Sprite2D" parent="env/Input"]
+modulate = Color(1, 1, 1, 0.298039)
+position = Vector2(90, -43)
+texture = ExtResource("22_eq8c4")
+
+[node name="KeyboardW3" type="Sprite2D" parent="env/Input"]
+position = Vector2(40, -43)
+texture = ExtResource("23_bv6cg")
+
+[node name="KeyboardW5" type="Sprite2D" parent="env/Input"]
+position = Vector2(90, 50)
+texture = ExtResource("24_oh2pf")
+
+[node name="KeyboardW6" type="Sprite2D" parent="env/Input"]
+position = Vector2(90, 115)
+texture = ExtResource("9_5omaw")
+
+[node name="KeyboardW4" type="Sprite2D" parent="env/Input"]
+position = Vector2(140, -43)
+texture = ExtResource("25_wmiih")
+
+[node name="RichTextLabel" type="Label" parent="env/Input"]
+offset_left = 135.0
+offset_top = -83.0
+offset_right = 320.0
+offset_bottom = -43.0
+text = "Move"
+label_settings = SubResource("LabelSettings_dsnfl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="Label" parent="env/Input"]
+offset_left = 135.0
+offset_top = 30.0
+offset_right = 320.0
+offset_bottom = 70.0
+text = "Jump"
+label_settings = SubResource("LabelSettings_dsnfl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel3" type="Label" parent="env/Input"]
+offset_left = 135.0
+offset_top = 95.0
+offset_right = 320.0
+offset_bottom = 135.0
+text = "Use"
+label_settings = SubResource("LabelSettings_dsnfl")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Path2D" type="Path2D" parent="env"]
+curve = SubResource("Curve2D_epg1b")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="env"]
+position = Vector2(-179, 47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/StaticBody2D"]
+position = Vector2(0, -68.5)
+shape = SubResource("RectangleShape2D_rmvcu")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="env"]
+position = Vector2(328, 49)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="env/StaticBody2D2"]
+position = Vector2(0, -68.5)
+shape = SubResource("RectangleShape2D_rmvcu")
+
+[connection signal="body_entered" from="Barrel/Area2D" to="Barrel" method="_body_entered"]
+[connection signal="body_exited" from="Barrel/Area2D" to="Barrel" method="_body_exited"]
+
+[editable path="Barrel/FishingGame"]

@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://gfnv7v1molxx"]
+
+[ext_resource type="Script" path="res://systems/scene_manager.gd" id="1_4uidd"]
+[ext_resource type="FontFile" uid="uid://dsiwgijtnw3ns" path="res://art/Kenney Pixel.ttf" id="2_lljnp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pjtel"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_pf6ns"]
+font = ExtResource("2_lljnp")
+font_size = 8
+
+[sub_resource type="Animation" id="Animation_xrqjm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_27p3u"]
+resource_name = "fade_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qlops"]
+resource_name = "fade_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r67yb"]
+_data = {
+"RESET": SubResource("Animation_xrqjm"),
+"fade_in": SubResource("Animation_27p3u"),
+"fade_out": SubResource("Animation_qlops")
+}
+
+[node name="SceneManager" type="CanvasLayer"]
+layer = 128
+script = ExtResource("1_4uidd")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pjtel")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -29.0
+offset_right = 90.0
+offset_bottom = -6.0
+grow_vertical = 0
+text = "Please wait..."
+label_settings = SubResource("LabelSettings_pf6ns")
+vertical_alignment = 2
+
+[node name="Percent" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = -31.0
+offset_top = -29.0
+offset_right = 53.0
+offset_bottom = -6.0
+grow_vertical = 0
+label_settings = SubResource("LabelSettings_pf6ns")
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r67yb")
+}
